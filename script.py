@@ -2,9 +2,10 @@ import os
 import sys
 import subprocess
 
-## Call termainal commands with this.
 
 '''
+Dependencies that need to be installed.
+
 1) Node Version 0.12.15
 
 2) npm install -g coffee-script@1.6.3
@@ -52,10 +53,10 @@ bubble_listen_cmd = 'sudo gem install ' + bubble_listen
 
 ## Pip commands
 bubble_selenium = 'selenium==2.35'
-bubble_selenium_cmd = 'sudo pip install ' + bubble_selenium
+bubble_selenium_cmd = 'sudo -H pip install ' + bubble_selenium
 
 bubble_iso8601 = 'iso8601'
-bubble_iso8601_cmd = 'sudo pip install ' + bubble_iso8601
+bubble_iso8601_cmd = 'sudo -H pip install ' + bubble_iso8601
 
 
 debug = True
@@ -264,17 +265,31 @@ def gem_check():
 
 
 ## Next 4 functions are installing functions.
+
+## Ruby is usually installed.
 def install_ruby():
 	print('Ruby installed.')
 
+## Install pip.
 def install_pip():
-	print('Pip installed.')
+	try:
+		os.system('brew install python')
+	except:
+		os.system('brew install python')
 
+
+## Gem is usually installed.
 def install_gem():
 	print('Gem installed.')
 
+## Command to install homebrew.
 def install_brew():
-	print('Brew installed.')
+	try:
+		os.system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
+	except:
+		os.system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
+
+
 
 
 ## Class to check the node version.
@@ -361,7 +376,6 @@ if __name__ == "__main__":
 		install_gem()
 
 
-
 	NodeVersion(bubble_node_version).ensure()
 # Check correct NPM packages.
 	GlobalNPM('coffee-script', '1.6.3').ensure()
@@ -377,6 +391,9 @@ if __name__ == "__main__":
 
 	YumDependency('ImageMagick').ensure()
 
+'''
+Part 2 -  Create Bubble project, and Bubble test
+'''
 
 
 
