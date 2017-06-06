@@ -145,7 +145,7 @@ class Dependency:
 			install_ruby(bubble_listen_cmd)
 
 		elif(self.name() == 'ruby gem rb-fsevent'):
-			print('HAHAHAHA')
+			install_ruby(bubble_fsevent_cmd)
 
 		elif(self.name() == 'pip install selenium==2.35'):
 			install_pip(bubble_selenium_cmd)
