@@ -3,27 +3,7 @@ import sys
 import subprocess
 
 
-'''
-Dependencies that need to be installed.
 
-1) Node Version 0.12.15
-
-2) npm install -g coffee-script@1.6.3
-
-3) npm install -g node-inspector@0.12.1
-
-4) npm install -g shrinkpack@0.13.1
-
-5) ruby gem rb-fsevent
-
-6) ruby gem sass
-
-7) ruby gem listen
-
-8) pip install selenium==2.35
-
-9) pip install iso8601
-'''
 
 ## Things needed for the correct node version.
 bubble_node_version = 'node@0.12.15'
@@ -63,6 +43,7 @@ debug = True
 
 _failed = False
 
+## Function if checking fails.
 def fail(msg):
 	global _failed
 	_failed = True
@@ -394,27 +375,3 @@ if __name__ == "__main__":
 '''
 Part 2 -  Create Bubble project, and Bubble test
 '''
-
-
-
-
-
-
-# checking node --version
-# Please install dependency: Node version 0.12.15
-# checking npm list -g --depth 1 coffee-script
-# Please install dependency: npm install -g coffee-script@1.6.3
-# checking npm list -g --depth 1 node-inspector
-# npm ERR! code 1
-# Please install dependency: npm install -g node-inspector@0.12.1
-# checking npm list -g --depth 1 shrinkpack
-# npm ERR! code 1
-# Please install dependency: npm install -g shrinkpack@0.13.1
-# checking gem list --local
-# Please install dependency: ruby gem rb-fsevent
-# Please install dependency: ruby gem sass
-# Please install dependency: ruby gem listen
-# starting sass --update sass:public/static/css
-# checking pip freeze
-# Please install dependency: pip install selenium==2.35
-# Please install dependency: pip install iso8601
