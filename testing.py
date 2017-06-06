@@ -1,5 +1,7 @@
 import subprocess
 import os
+from git import Repo
+
 
 
 cmd = 'sudo gem install listen'
@@ -106,24 +108,28 @@ def check_gem():
 ## 1) Install ruby's latest version.
 
 ## 2) Link the file to the computer.
-print check_gem()
+
+
+git_url = 'https://github.com/bubblegroup/bubble'
+dir_name = 'Testing2'
+
+HTTPS_REMOTE_URL = 'https://<access_token>:x-oauth-basic@github.com/username/private-project'
+
+try:
+	Repo.clone_from(git_url, dir_name)
+except:
+	print 'Error.'
 
 '''
 Current Goals
+--------------
 
 
-	Ruby Plans
-	----------
-1) Install latest version of Ruby.
+1) Test
 
-2) Integrate that function into your current script.
-
-3) Run the script, and see what can be built.
+2) See if you can download the git projects of bubble and bubble test, on to the computer.
 
 
-	Brew Plans
-	----------
 
-1) Install homebrew if it doesen't exist.
 
 '''
