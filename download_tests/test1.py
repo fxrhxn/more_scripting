@@ -3,7 +3,8 @@ import os
 
 
 
-
+import os
+cwd = os.getcwd()
 
 ## Repo urls to clone.
 repo_urls = ['https://github.com/bubblegroup/bubble', 'https://github.com/jphaas/bubble_private']
@@ -26,6 +27,13 @@ def download_repo(repo):
 
 
 
-## For loop to split up the repo urls.
-for url in repo_urls:
-	download_repo(url)
+# ## For loop to split up the repo urls.
+# for url in repo_urls:
+# 	download_repo(url)
+#
+
+directories_split = cwd.split('/');
+
+current_directory = directories_split[len(directories_split) - 1]
+
+print(current_directory)
