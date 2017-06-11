@@ -62,7 +62,7 @@ def get_output(cmd, ignore_fail=True, no_verbose=False):
 		else:
 			raise e
 
-## Checking the dependency.
+
 class Dependency:
 	def name(self): return self._name
 
@@ -198,48 +198,50 @@ def ruby_check():
 
 	## Get the current version of Ruby.
 	reading = os.popen('ruby -v').read()
-	version = reading.split()[1][:5]
 
-	version_splitting = version.split('.');
-
-	major_version = int(version_splitting[0]);
-	minor_version = int(version_splitting[1]);
-
-	if(major_version < 2):
+	if(len(reading.split()) == 0):
 		return False
 	else:
-		if(minor_version < 4):
-			return False
+		return True
 
+	# version = reading.split()[1][:5]
+	#
+	# version_splitting = version.split('.');
+	#
+	# major_version = int(version_splitting[0]);
+	# minor_version = int(version_splitting[1]);
+	#
+	# if(major_version < 2):
+	# 	return False
+	# else:
+	# 	if(minor_version < 4):
+	# 		return False
+	#
 
 def brew_check():
 	brew_read = os.popen('brew -v').read()
 
-	brew_version = brew_read.split()[1].split('.')
-
-	brew_major = brew_version[0]
-
-	if(brew_major.isdigit()):
-		return True
-	else:
+	if(len(brew_read.split()) == 0):
 		return False
+	else:
+		return True
+
 
 def pip_check():
 	reading = os.popen('pip -V').read()
-	version = reading.split()[1].split('.')
 
-	if(len(version) != 3):
+	if(len(reading.split()) == 0):
 		return False
 	else:
 		return True
+
 
 
 
 def gem_check():
 	reading = os.popen('gem -v').read()
-	version = reading.split('.')
 
-	if(len(version) != 3):
+	if(len(reading.split()) == 0):
 		return False
 	else:
 		return True
@@ -249,15 +251,15 @@ def gem_check():
 
 ## Ruby is usually installed.
 def install_ruby():
+	## Install Ruby using homebrew.
 	print('Ruby installed.')
 
 ## Install pip.
 def install_pip():
-	try:
-		os.system('brew install python')
-	except:
-		os.system('brew install python')
-
+	## Link GBDM to use python with homebrew.
+	os.system('brew link gbdm')
+	## Install python using homebrew.
+	os.system('brew install python')
 
 ## Gem is usually installed.
 def install_gem():
@@ -265,11 +267,7 @@ def install_gem():
 
 ## Command to install homebrew.
 def install_brew():
-	try:
-		os.system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
-	except:
-		os.system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
-
+	os.system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
 
 
 
@@ -329,49 +327,67 @@ class GlobalNPM(CmdExists):
 
 if __name__ == "__main__":
 
-## Just set debug to True. Don't worry why.
-	debug = True
 
-# Check the correct version of Node / Ruby
-	print('Script has started.')
-	check_ruby = ruby_check()
-	check_brew = brew_check()
-	check_pip = pip_check()
-	check_gem = gem_check()
+	# ## Just set debug to True.
+	# debug = True
+	#
+	# # Check the correct version of Node / Ruby
+	# print('Script has started.')
+	#
+	# check_ruby = ruby_check()
+	# check_brew = brew_check()
+	# check_pip = pip_check()
+	# check_gem = gem_check()
+	#
+	# # Check ruby and see correct version.
+	# if(check_ruby == False):
+	# 	install_ruby()
+	# else:
+	# 	print('ruby already installed.')
+	#
+	# ## Check brew and find the correct version.
+	# if(check_brew == False):
+	# 	install_brew()
+	# else:
+	# 	print('brew already installed.')
+	#
+	# ## Check pip and install the same version.
+	# if(check_pip == False):
+	# 	install_pip()
+	# else:
+	# 	print('pip already installed.')
+	#
+	# ## Check gem and install the correct version.
+	# if(check_gem == False):
+	# 	install_gem()
+	# else:
+	# 	print('gem already installed.')
+	#
 
-	## Check ruby and see correct version.
-	if(check_ruby == False):
-		install_ruby()
+	# NodeVersion(bubble_node_version).ensure()
 
-
-	## Check brew and find the correct version.
-	if(check_brew == False):
-		install_brew()
-
-	## Check pip and install the same version.
-	if(check_pip == False):
-		install_pip()
-
-	## Check gem and install the correct version.
-	if(check_gem == False):
-		install_gem()
-
-
-	NodeVersion(bubble_node_version).ensure()
-# Check correct NPM packages.
-	GlobalNPM('coffee-script', '1.6.3').ensure()
-	GlobalNPM('node-inspector', '0.12.1').ensure()
-	GlobalNPM('shrinkpack', '0.13.1').ensure()
-	GemDependency('rb-fsevent').ensure()
-	GemDependency('sass').ensure()
-	GemDependency('listen').ensure()
+	# Check correct NPM packages.
+	 GlobalNPM('coffee-script', '1.6.3').ensure()
+	# GlobalNPM('node-inspector', '0.12.1').ensure()
+	# GlobalNPM('shrinkpack', '0.13.1').ensure()
+	# GemDependency('rb-fsevent').ensure()
+	# GemDependency('sass').ensure()
+	# GemDependency('listen').ensure()
+	#
 
 # #Dependencies for our testing framework:
-	PipDependency('selenium', '2.35').ensure()
-	PipDependency('iso8601').ensure()
-
-	YumDependency('ImageMagick').ensure()
+	# PipDependency('selenium', '2.35').ensure()
+	# PipDependency('iso8601').ensure()
+	#YumDependency('ImageMagick').ensure()
 
 '''
-Part 2 -  Create Bubble project, and Bubble test
+
+Part 2 - Start downloading the bubble projects.
+
 '''
+	# bubble_url = 'https://github.com/bubblegroup/bubble'
+	# bubble_private = 'https://github.com/jphaas/bubble_private'
+	# os.system('git clone ' + bubble_url)
+	# os.system('git clone ' + bubble_private)
+	#
+	#
