@@ -3,8 +3,6 @@ import os
 
 
 
-import os
-cwd = os.getcwd()
 
 ## Repo urls to clone.
 repo_urls = ['https://github.com/bubblegroup/bubble', 'https://github.com/jphaas/bubble_private']
@@ -32,8 +30,16 @@ def download_repo(repo):
 # 	download_repo(url)
 #
 
+# Get the current line of directories.
+cwd = os.getcwd()
+
+# Split the directories up.
 directories_split = cwd.split('/');
 
+# Get the name of the current directory.
 current_directory = directories_split[len(directories_split) - 1]
 
-print(current_directory)
+if(current_directory != 'Desktop'):
+	print('ERROR - Please make sure you are in the "Desktop" directory.')
+else:
+	print('Ok we can clone shit.')
