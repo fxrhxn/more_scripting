@@ -35,6 +35,7 @@ bubble_listen_cmd = 'sudo gem install ' + bubble_listen
 bubble_selenium = 'selenium==2.35'
 bubble_selenium_cmd = 'sudo -H pip install ' + bubble_selenium
 
+
 bubble_iso8601 = 'iso8601'
 bubble_iso8601_cmd = 'sudo -H pip install ' + bubble_iso8601
 
@@ -106,14 +107,8 @@ class Dependency:
 		def install_ruby(command):
 			try:
 				os.system(command)
-
-				## Read the command line, and if there is some error, your will do something.
-
-				# TODO - Find out how to read the command line.
-
 			except:
 				print('Some Error')
-
 
 		#Function that installs node.js
 		def install_nodejs(command):
@@ -367,7 +362,7 @@ if __name__ == "__main__":
 	# NodeVersion(bubble_node_version).ensure()
 
 	# Check correct NPM packages.
-	 GlobalNPM('coffee-script', '1.6.3').ensure()
+	# GlobalNPM('coffee-script', '1.6.3').ensure()
 	# GlobalNPM('node-inspector', '0.12.1').ensure()
 	# GlobalNPM('shrinkpack', '0.13.1').ensure()
 	# GemDependency('rb-fsevent').ensure()
